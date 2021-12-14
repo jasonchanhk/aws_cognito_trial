@@ -8,7 +8,7 @@ const Account = (props) => {
 
     const getSession = async() => {
         return await new Promise((resolve, reject) => {
-            const user = UserPool.getCurrentUser()
+            const user = UserPool.getCurrentUser() //retrieve current user from local storage
             if(user){
                 user.getSession(async (err, session) => {
                     if(err){
@@ -19,6 +19,7 @@ const Account = (props) => {
                                 if(err){
                                     reject(err);                                    
                                 }else{
+                                    console.log('session validity: ' + session.isValid())
                                     const results = {};
                                     for (let attribute of attributes){
                                         const { Name, Value } = attribute;
